@@ -1,31 +1,47 @@
-// Объявление переменных
-let title = "myFirstProject_JavaScript";
-let screens = "Простые, Сложные, Интерактивные";
-let screenPrice = 12000;
-let rollback = 25;
-let fullPrice = 50000;
-let adaptive = true;
+// Объявление переменных с присвоением значений через prompt
+let title = prompt("Как называется ваш проект?", "myFirstProject_JavaScript");
+let screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
+let screenPrice = Number(prompt("Сколько будет стоить данная работа?", "12000"));
+let adaptive = confirm("Нужен ли адаптив на сайте?");
 
-// Вывод в консоль типа данных значений переменных
+// Вопросы по дополнительным услугам
+let service1 = prompt("Какой дополнительный тип услуги нужен?", "Дизайн");
+let servicePrice1 = Number(prompt("Сколько это будет стоить?", "5000"));
+let service2 = prompt("Какой дополнительный тип услуги нужен?", "Наполнение контентом");
+let servicePrice2 = Number(prompt("Сколько это будет стоить?", "3000"));
+
+// Вычисление итоговой стоимости
+let fullPrice = screenPrice + servicePrice1 + servicePrice2;
+
+// Вычисление стоимости за вычетом отката посреднику
+let rollback = 25; // процент отката
+let servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollback / 100)));
+console.log("Стоимость за вычетом отката:", servicePercentPrice, "рублей");
+
+// Конструкция условий для скидки
+if (fullPrice > 30000) {
+    console.log("Даем скидку в 10%");
+} else if (fullPrice > 15000 && fullPrice <= 30000) {
+    console.log("Даем скидку в 5%");
+} else if (fullPrice > 0 && fullPrice <= 15000) {
+    console.log("Скидка не предусмотрена");
+} else if (fullPrice <= 0) {
+    console.log("Что то пошло не так");
+}
+
+// Сохранение функционала из предыдущих уроков
 console.log("Тип данных title:", typeof title);
 console.log("Тип данных fullPrice:", typeof fullPrice);
 console.log("Тип данных adaptive:", typeof adaptive);
-
-// Вывод в консоль длины строки из переменной screens
 console.log("Длина строки screens:", screens.length);
-
-// Вывод стоимости верстки экранов и разработки сайта
 console.log(`Стоимость верстки экранов ${screenPrice} рублей`);
 console.log(`Стоимость разработки сайта ${fullPrice} рублей`);
 
-// Приведение строки screens к нижнему регистру и разбиение на массив
 let screensLower = screens.toLowerCase();
 let screensArray = screensLower.split(", ");
 console.log("Массив экранов в нижнем регистре:", screensArray);
 
-// Вычисление и вывод процента отката посреднику
 let rollbackAmount = fullPrice * (rollback / 100);
 console.log("Процент отката посреднику:", rollbackAmount, "рублей");
 
-// Вывод модального окна
-alert("Задание урока 2 выполнено! Проверьте консоль для просмотра результатов.");
+alert("Задание урока 3 выполнено! Проверьте консоль для просмотра результатов.");
